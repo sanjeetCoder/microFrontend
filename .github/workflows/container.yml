@@ -1,5 +1,4 @@
-name:deploy-container
-
+name: deploy-container
 on:
   push:
     branches:
@@ -8,13 +7,13 @@ on:
      - 'packages/container/**'
 defaults:
   run:
-    workingt-directory:package/container
+    working-directory: packages/container
 
 jobs:
   build:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
   steps:
-    - uses:actions/checkout@v2
+    - uses: actions/checkout@v2
     - run: npm install
     - run: npm run build
 
@@ -22,4 +21,4 @@ jobs:
     -run: aws s3 sync dist s3://${{secrets.AWS_S3_BUCKET_NAME}}/container/latest
      env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-      AWS_ACCESS_KEY_KEY: ${{secrets.AWS_ACCESS_KEY_KEY}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
