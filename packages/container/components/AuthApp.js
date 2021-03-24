@@ -1,11 +1,11 @@
-import { mount as authMount } from 'auth/authApp';
+import { authMount as mountAuth } from 'auth/AuthApp';
 import React, { useRef, useEffect } from 'react';
 
 export default () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    authMount(ref.current, {
+    mountAuth(ref.current, {
       onNavigate: (location) => {
         console.log(location);
       },
